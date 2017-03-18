@@ -32,6 +32,12 @@ long play_high_time = 600000;
 void play_120() {
   now = micros();
   interval = now - last_time;
+  
+  if (interval > 769) { //650Hz，每秒650次 1000000/650=1538/2=769
+      digitalWrite(buzzer, is_high);
+      is_high = is_high?false:true;
+  }
+  
   if (play_low_time > 0) { //低频
     if (interval > 769) { //650Hz，每秒650次 1000000/650=1538/2=769
       digitalWrite(buzzer, is_high);
